@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getCaseGroups, getCaseIndex, getCaseMarkdown, findCases } from 'nhx-ts-lib/cases';
 import { FidelityBadge } from '../components/badges';
@@ -24,6 +24,12 @@ export default function Cases() {
     getCaseMarkdown(sel).then((s) => setMd(s ?? '（未找到）'));
   }, [sel]);
 
+  // 移动端：医案正文就绪后滚动过去
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (sel && md && window.innerWidth <= 880) mainRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [sel, md]);
+
   return (
     <div className="page cols">
       <aside className="side">
@@ -44,7 +50,7 @@ export default function Cases() {
         </ul>
       </aside>
 
-      <main className="main">
+      <main className="main" ref={mainRef}>
         {!sel && (
           <>
             <h2>倪海厦医案</h2>

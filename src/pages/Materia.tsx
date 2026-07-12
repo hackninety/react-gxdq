@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getHerbs, getHerb, type HerbMeta } from 'nhx-ts-lib/herbs';
 import { getAcupoints, getAcupoint, getMeridians } from 'nhx-ts-lib/acupoints';
@@ -59,6 +59,12 @@ export default function Materia() {
     load.then((d) => setDetail(d as never));
   }, [tab, sel]);
 
+  // 移动端（单列堆叠）：详情就绪后滚动过去（过早滚动时页面还不够高，滚不动）
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (sel && detail && window.innerWidth <= 880) mainRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [sel, detail]);
+
   const herbMeta = tab === 'herbs' && detail ? (detail as unknown as HerbMeta) : undefined;
 
   return (
@@ -87,7 +93,7 @@ export default function Materia() {
         </ul>
       </aside>
 
-      <main className="main">
+      <main className="main" ref={mainRef}>
         {!sel && <p className="muted">← 选择条目查看详情（正文与人纪原文引用按需加载）</p>}
         {sel && detail === undefined && <p className="muted">加载中…</p>}
         {detail && (

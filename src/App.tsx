@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import { Seal } from './components/Seal';
 import { THEME_LABEL, useTheme } from './theme';
 import Home from './pages/Home';
@@ -12,7 +12,6 @@ import Transcripts from './pages/Transcripts';
 import Gua from './pages/Gua';
 
 const NAV = [
-  { to: '/', label: '首页' },
   { to: '/library', label: '文库' },
   { to: '/search', label: '检索' },
   { to: '/materia', label: '方药穴' },
@@ -25,7 +24,7 @@ export default function App() {
   const { theme, cycle } = useTheme();
   const [navOpen, setNavOpen] = useState(false);
   const links = NAV.map((n) => (
-    <NavLink key={n.to} to={n.to} end={n.to === '/'}
+    <NavLink key={n.to} to={n.to}
       onClick={() => setNavOpen(false)}
       className={({ isActive }) => (isActive ? 'active' : '')}>
       {n.label}
@@ -35,7 +34,7 @@ export default function App() {
     <>
       <nav className="topnav">
         <button className="nav-burger" onClick={() => setNavOpen(true)} aria-label="打开菜单">☰</button>
-        <span className="brand"><Seal text="国学" size={30} />国学大全</span>
+        <Link className="brand" to="/" title="回到首页"><Seal text="国学" size={30} />国学大全</Link>
         <div className="nav-inline">{links}</div>
         <span className="spacer" />
         <button className="theme-btn" onClick={cycle}
@@ -45,7 +44,7 @@ export default function App() {
       </nav>
       {/* 移动端抽屉：置于 nav 之外——topnav 的 backdrop-filter 会劫持 fixed 定位包含块 */}
       <div className={`nav-drawer${navOpen ? ' open' : ''}`} aria-hidden={!navOpen}>
-        <span className="brand"><Seal text="国学" size={26} />国学大全</span>
+        <Link className="brand" to="/" onClick={() => setNavOpen(false)}><Seal text="国学" size={26} />国学大全</Link>
         {links}
       </div>
       {navOpen && <div className="nav-scrim" onClick={() => setNavOpen(false)} aria-hidden />}

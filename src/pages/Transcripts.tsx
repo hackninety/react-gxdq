@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getTranscriptBooks, getTranscriptChapter, type TranscriptChapter } from 'nhx-ts-lib/transcripts';
 
@@ -17,6 +17,14 @@ export default function Transcripts() {
     setChapter('loading');
     getTranscriptChapter(book, ch).then((c) => setChapter(c));
   }, [book, ch]);
+
+  // 移动端：章节正文就绪后滚动过去
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (ch && chapter && chapter !== 'loading' && window.innerWidth <= 880) {
+      mainRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [ch, chapter]);
 
   return (
     <div className="page cols">
@@ -37,7 +45,7 @@ export default function Transcripts() {
         )}
       </aside>
 
-      <main className="main">
+      <main className="main" ref={mainRef}>
         {!book && (
           <>
             <h2>人纪视频逐字稿</h2>
