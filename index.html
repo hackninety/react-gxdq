@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>国学大全</title>
+    <script>
+      // 主题防闪烁：渲染前依 localStorage 预置 data-theme（瓷/雪/玄，默认瓷）
+      (function () {
+        var t;
+        try { t = localStorage.getItem('gxdq.theme'); } catch (e) { /* ignore */ }
+        document.documentElement.setAttribute('data-theme', t === 'xue' || t === 'xuan' ? t : 'ci');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

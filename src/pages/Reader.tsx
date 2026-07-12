@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getBookManifest, getDocMarkdown, getDocsManifest } from 'nhx-ts-lib';
+import { getBook, getBookManifest, getDocMarkdown, getDocsManifest } from 'nhx-ts-lib';
 import { wushuOfDoc } from '../gx/taxonomy';
 import { FidelityBadge, WushuTag } from '../components/badges';
 import { Md } from '../components/Md';
@@ -29,7 +29,7 @@ export default function Reader() {
       {meta && (
         <div className="crumbs">
           <Link to={`/library?book=${path.split('/')[0]}`}>{meta.series} · {meta.book}</Link>
-          <span className="muted"> / {meta.group}</span>
+          <span className="muted"> / {getBook(path.split('/')[0])?.groups.find((g) => g.id === meta.group)?.title ?? meta.group}</span>
           <FidelityBadge f={meta.fidelity} />
           {wushuOfDoc(meta).map((w) => <WushuTag key={w} w={w} />)}
           {meta.date && <span className="muted">{meta.date}</span>}

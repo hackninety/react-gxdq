@@ -1,4 +1,6 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
+import { Seal } from './components/Seal';
+import { THEME_LABEL, useTheme } from './theme';
 import Home from './pages/Home';
 import Library from './pages/Library';
 import Reader from './pages/Reader';
@@ -19,10 +21,11 @@ const NAV = [
 ];
 
 export default function App() {
+  const { theme, cycle } = useTheme();
   return (
     <>
       <nav className="topnav">
-        <span className="brand">国学大全</span>
+        <span className="brand"><Seal text="国学" size={30} />国学大全</span>
         {NAV.map((n) => (
           <NavLink key={n.to} to={n.to} end={n.to === '/'}
             className={({ isActive }) => (isActive ? 'active' : '')}>
@@ -30,7 +33,11 @@ export default function App() {
           </NavLink>
         ))}
         <span className="spacer" />
-        <a className="muted" href="https://github.com/hackninety/nhx-ts-lib" target="_blank" rel="noreferrer">nhx-ts-lib v0.1.0</a>
+        <button className="theme-btn" onClick={cycle}
+          title={`当前「${THEME_LABEL[theme]}」· 点击切换主题`} aria-label="切换主题">
+          ◐ {THEME_LABEL[theme]}
+        </button>
+        <a className="muted navlib" href="https://github.com/hackninety/nhx-ts-lib" target="_blank" rel="noreferrer">nhx-ts-lib v0.1.0</a>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

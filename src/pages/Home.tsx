@@ -11,8 +11,9 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
+        <p className="kicker">为往圣继绝学 · 语料检索与分析</p>
         <h1>国学大全</h1>
-        <p className="sub">按 <b>作者</b> 与 <b>五术（山·医·命·卜·相）</b> 归类的国学语料检索与分析平台</p>
+        <p className="sub">按 <b>作者</b> 与 <b>五术（山·医·命·卜·相）</b> 归类的国学语料库</p>
         <div className="stat-row">
           <Link className="stat" to="/library"><b>{stats.docsTotal}</b><span>讲稿篇目 · {books.length} 书</span></Link>
           <Link className="stat" to="/cases"><b>{stats.casesTotal}</b><span>医案</span></Link>
