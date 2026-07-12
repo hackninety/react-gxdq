@@ -507,3 +507,21 @@ select:focus { outline: none; border-color: var(--accent); }
 .gua-cell.active .gua-symbol { color: var(--accent); }
 .gua-name { font-size: 12.5px; color: var(--ink-soft); }
 .gua-detail { margin-top: 20px; } /* 与 .gua-grid 同宽（占满 .page 内容区） */
+
+/* 视频课程 */
+.video-tabs { flex-wrap: wrap; margin: 14px 0 18px; }
+.video-tabs button { flex: none; padding: 4px 16px; }
+.video-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+  gap: 10px; margin: 16px 0;
+}
+.video-cell {
+  display: flex; flex-direction: column; gap: 2px;
+  border: 1px solid var(--rule-soft); background: var(--paper);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-soft);
+  padding: 9px 12px; color: var(--ink);
+  transition: transform var(--t-fast), border-color var(--t-fast);
+}
+.video-cell:hover { transform: translateY(-2px); border-color: var(--accent); text-decoration: none; }
+.video-n { font-size: 19px; color: var(--accent); font-variant-numeric: tabular-nums; }
+.video-title { font-size: 12.5px; color: var(--ink-soft); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }

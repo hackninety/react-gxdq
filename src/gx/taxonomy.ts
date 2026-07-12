@@ -58,8 +58,8 @@ export const LIBS: CorpusLib[] = [
   {
     id: 'nhx', title: '倪海厦文库', authorId: 'nihaixia', authorName: '倪海厦',
     status: 'installed', wushu: ['医', '命', '卜', '相', '山'],
-    repo: 'github:hackninety/nhx-ts-lib', version: 'v0.1.0',
-    note: '14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 逐字稿 6486 段 · 64 卦',
+    repo: 'github:hackninety/nhx-ts-lib', version: 'v0.1.1',
+    note: '14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 逐字稿 6486 段 · 64 卦 · 139 集视频',
   },
   {
     id: 'lrdq', title: '大六壬典籍', authorId: 'guji', authorName: '古籍多家',

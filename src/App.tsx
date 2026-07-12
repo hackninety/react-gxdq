@@ -10,6 +10,7 @@ import Materia from './pages/Materia';
 import Cases from './pages/Cases';
 import Transcripts from './pages/Transcripts';
 import Gua from './pages/Gua';
+import Videos from './pages/Videos';
 
 const NAV = [
   { to: '/library', label: '文库' },
@@ -18,6 +19,7 @@ const NAV = [
   { to: '/cases', label: '医案' },
   { to: '/transcripts', label: '逐字稿' },
   { to: '/gua', label: '六十四卦' },
+  { to: '/videos', label: '视频' },
 ];
 
 export default function App() {
@@ -57,6 +59,7 @@ export default function App() {
         <Route path="/cases" element={<Cases />} />
         <Route path="/transcripts" element={<Transcripts />} />
         <Route path="/gua" element={<Gua />} />
+        <Route path="/videos" element={<Videos />} />
       </Routes>
     </>
   );

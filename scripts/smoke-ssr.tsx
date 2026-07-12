@@ -21,6 +21,7 @@ const routes: [string, string][] = [
   ['/cases', '倪海厦医案'],
   ['/transcripts', '人纪视频逐字稿'],
   ['/gua', '六十四卦'],
+  ['/videos', '视频课程'],
 ];
 let fail = 0;
 for (const [path, expect] of routes) {

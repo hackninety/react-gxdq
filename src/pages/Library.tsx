@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { getVideoSeriesFor } from 'nhx-ts-lib/videos';
 import { GROUP_LABEL, loadLib, type LoadedLib } from '../gx/libs';
 import { LIBS, WUSHU, wushuOfBook, wushuOfDoc, type WuShu } from '../gx/taxonomy';
 import { FidelityBadge, WushuTag } from '../components/badges';
@@ -130,6 +131,9 @@ export default function Library() {
               {isNhx
                 ? wushuOfBook(current.slug!, (current.groups ?? []).map((g) => g.id)).map((w) => <WushuTag key={w} w={w} />)
                 : lib.wushu.map((w) => <WushuTag key={w} w={w} />)}
+              {isNhx && current.slug && getVideoSeriesFor(current.slug) && (
+                <Link className="btn" to={`/videos?s=${getVideoSeriesFor(current.slug)!.id}`}>B站视频 →</Link>
+              )}
               <span className="muted">{LIBS.find((l) => l.id === lib.id)?.repo}</span>
             </div>
             <ul className="doc-list">
