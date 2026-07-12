@@ -47,10 +47,12 @@ export default function Home() {
                 {lib.status === 'planned' && <span className="badge planned">待接入</span>}
               </div>
               <p>{lib.note ?? lib.repo}</p>
-              <div>{lib.wushu.map((w) => <WushuTag key={w} w={w} />)}</div>
-              {lib.status === 'installed' && (
-                <Link className="btn" to={lib.id === 'nhx' ? '/library' : `/library?lib=${lib.id}`}>进入文库 →</Link>
-              )}
+              <div className="card-foot">
+                <div className="wushu-row">{lib.wushu.map((w) => <WushuTag key={w} w={w} />)}</div>
+                {lib.status === 'installed' && (
+                  <Link className="btn" to={lib.id === 'nhx' ? '/library' : `/library?lib=${lib.id}`}>进入文库 →</Link>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -58,12 +60,14 @@ export default function Home() {
 
       <section>
         <h2>作者</h2>
-        {AUTHORS.map((a) => (
-          <div key={a.id} className="card">
-            <div className="card-head"><b>{a.name}</b><span className="muted">{a.era}</span></div>
-            <p>{a.bio}</p>
-          </div>
-        ))}
+        <div className="cards">
+          {AUTHORS.map((a) => (
+            <div key={a.id} className="card">
+              <div className="card-head"><b>{a.name}</b><span className="muted">{a.era}</span></div>
+              <p>{a.bio}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <footer className="disclaimer">{DISCLAIMER}</footer>

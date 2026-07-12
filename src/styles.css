@@ -46,6 +46,7 @@
   --hl: rgba(176, 74, 82, 0.1);
   --noise-blend: multiply;
   --noise-opacity: 0.34;
+  --scrim: rgba(34, 42, 32, 0.36);
 }
 
 /* —— 雪 · 明亮 —— */
@@ -73,6 +74,7 @@
   --hl: rgba(166, 63, 72, 0.08);
   --noise-blend: multiply;
   --noise-opacity: 0.22;
+  --scrim: rgba(30, 36, 28, 0.32);
 }
 
 /* —— 玄 · 墨夜 —— */
@@ -100,6 +102,7 @@
   --hl: rgba(134, 184, 166, 0.14);
   --noise-blend: overlay;
   --noise-opacity: 0.45;
+  --scrim: rgba(0, 0, 0, 0.55);
 }
 
 /* ===== 基础 ===== */
@@ -194,8 +197,55 @@ button { cursor: pointer; }
   color: var(--ink-soft); transition: border-color var(--t-fast), color var(--t-fast);
 }
 .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
-.navlib { font-size: 12.5px; }
-@media (max-width: 860px) { .navlib { display: none; } }
+
+/* 导航链接：桌面端内联展开，移动端汉堡按钮 + 左侧抽屉（抽屉在 nav 外层） */
+.nav-inline { display: contents; }
+.nav-burger {
+  display: none;
+  border: 1px solid var(--rule); background: var(--paper);
+  border-radius: var(--radius-sm); padding: 1px 10px 3px;
+  color: var(--ink-soft); font-size: 17px; line-height: 1.5;
+}
+.nav-drawer { display: none; }
+.nav-scrim { display: none; }
+@media (max-width: 860px) {
+  .topnav { gap: 12px; }
+  .nav-burger { display: inline-flex; }
+  .nav-inline { display: none; }
+  .nav-drawer {
+    display: flex; flex-direction: column; gap: 4px;
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: min(76vw, 300px);
+    background: var(--paper);
+    border-right: 1px solid var(--rule);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    z-index: 40;
+    transform: translateX(-105%);
+    transition: transform var(--t-med);
+  }
+  .nav-drawer.open { transform: translateX(0); }
+  .nav-drawer .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 16.5px; font-weight: 700; letter-spacing: 0.14em;
+    padding: 4px 6px 14px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .nav-drawer a {
+    color: var(--ink-soft);
+    padding: 9px 12px; font-size: 16px; border-radius: var(--radius-sm);
+  }
+  .nav-drawer a:hover { background: var(--paper-soft); text-decoration: none; }
+  .nav-drawer a.active {
+    color: var(--accent); font-weight: 600;
+    background: var(--accent-wash); text-decoration: none;
+  }
+  .nav-scrim {
+    display: block; position: fixed; inset: 0;
+    background: var(--scrim); z-index: 39;
+    backdrop-filter: blur(2px);
+  }
+}
 
 /* ===== 版面 ===== */
 .page { max-width: var(--maxw); margin: 0 auto; padding: clamp(18px, 3.5vw, 30px); }
@@ -238,7 +288,7 @@ section > h2 {
 }
 section > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule-soft); }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(262px, 1fr)); gap: 14px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(262px, 1fr)); gap: 14px; align-items: stretch; }
 .card {
   background: var(--paper);
   border: 1px solid var(--rule-soft);
@@ -246,9 +296,18 @@ section > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule-
   box-shadow: var(--shadow-soft);
   padding: 15px 17px;
   color: var(--ink);
+  display: flex; flex-direction: column;
   transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
 }
-.card p { margin: 6px 0; color: var(--ink-soft); font-size: 13.8px; }
+.card p { margin: 8px 0 0; color: var(--ink-soft); font-size: 13.8px; }
+/* 卡片脚注行：五术标签（小号）居左下，「进入文库」居右下，随卡片等高对齐 */
+.card-foot {
+  margin-top: auto; padding-top: 12px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 10px;
+}
+.card-foot .wushu-row { display: flex; flex-wrap: wrap; }
+.card-foot .wushu { width: 21px; height: 21px; font-size: 11.5px; margin-right: 3px; border-width: 1px; border-radius: 6px; }
+.card-foot .btn { white-space: nowrap; flex: none; }
 a.card:hover, .card:hover { text-decoration: none; }
 a.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--rule); }
 .card.planned { opacity: 0.62; background: var(--paper-sunk); }
@@ -438,4 +497,4 @@ select:focus { outline: none; border-color: var(--accent); }
 .gua-symbol { display: block; font-size: 27px; line-height: 1.3; color: var(--accent); }
 .gua-cell.active .gua-symbol { color: var(--accent); }
 .gua-name { font-size: 12.5px; color: var(--ink-soft); }
-.gua-detail { margin-top: 20px; max-width: var(--maxw-read); }
+.gua-detail { margin-top: 20px; } /* 与 .gua-grid 同宽（占满 .page 内容区） */
