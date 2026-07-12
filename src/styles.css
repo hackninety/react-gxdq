@@ -345,6 +345,18 @@ a.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-co
 .entity-list li.active { background: var(--accent-wash); }
 .entity-list li.active b { color: var(--accent); }
 
+.lib-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 12px; }
+.lib-tabs button {
+  border: 1px solid var(--rule); background: none;
+  border-radius: var(--radius-sm); padding: 5px 4px 3px;
+  color: var(--ink-soft); line-height: 1.4;
+  display: flex; flex-direction: column; align-items: center;
+  transition: border-color var(--t-fast), color var(--t-fast), background-color var(--t-fast);
+}
+.lib-tabs button .muted { font-size: 11.5px; }
+.lib-tabs button:hover { border-color: var(--accent-soft); }
+.lib-tabs button.active { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); font-weight: 600; }
+
 .tabs { display: flex; gap: 7px; margin-bottom: 10px; }
 .tabs button {
   flex: 1; border: 1px solid var(--rule); background: none;

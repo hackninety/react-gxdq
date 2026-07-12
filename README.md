@@ -4,13 +4,17 @@
 Vite + React + TypeScript，语料以 `*-ts-lib` 语料库形式接入（manifest 同步索引 +
 载荷分包懒加载，36 个 chunk 按需拉取，首屏仅 ~200KB gzip）。
 
-## 已接入语料库
+## 已接入语料库（均为 GitHub tag 固定引入，无本地路径依赖）
 
 | 库 | 作者 | 内容 | 五术 |
 |---|---|---|---|
-| [nhx-ts-lib](https://github.com/hackninety/nhx-ts-lib) v0.1.0 | 倪海厦 | 14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 人纪逐字稿 6486 段 · 64 卦 | 医 命 卜 相 山 |
+| [nhx-ts-lib](https://github.com/hackninety/nhx-ts-lib) `#v0.1.0` | 倪海厦 | 14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 人纪逐字稿 6486 段 · 64 卦 | 医 命 卜 相 山 |
+| [lrdq-ts-lib](https://github.com/hackninety/lrdq-ts-lib) `#v0.11.0` | 古籍多家 | 《六壬大全》（明·四库本）《六壬心镜》（唐）《六壬指南注解》 28 篇 | 卜 |
+| [zslj-ts-lib](https://github.com/hackninety/zslj-ts-lib) `#v0.2.1` | 安倍晴明 | 《占事略決》原典合订本（983 年顷）+ 算法说明 | 卜 |
+| [qmdj-ts-lib](https://github.com/hackninety/qmdj-ts-lib) `#v0.1.1` | 古籍多家 | 《奇门遁甲秘笈大全》三十卷 + 金函玉镜残卷，33 篇 | 卜 |
 
-规划接入（见 `src/gx/taxonomy.ts` 注册表）：lrdq-ts-lib（大六壬）、zslj-ts-lib（占事略決）、qmdj-ts-lib（奇门遁甲）。
+多库适配层见 `src/gx/libs.ts`（统一 GxDocMeta 形状、按库动态分包）；
+新库接入 = taxonomy 注册表加一行 + libs.ts 加一个 loader。
 
 ## 页面
 

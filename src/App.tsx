@@ -37,12 +37,12 @@ export default function App() {
           title={`当前「${THEME_LABEL[theme]}」· 点击切换主题`} aria-label="切换主题">
           ◐ {THEME_LABEL[theme]}
         </button>
-        <a className="muted navlib" href="https://github.com/hackninety/nhx-ts-lib" target="_blank" rel="noreferrer">nhx-ts-lib v0.1.0</a>
+        <a className="muted navlib" href="https://github.com/hackninety?tab=repositories" target="_blank" rel="noreferrer">语料库 ×4</a>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/library" element={<Library />} />
-        <Route path="/read/*" element={<Reader />} />
+        <Route path="/read/:lib/*" element={<Reader />} />
         <Route path="/search" element={<Search />} />
         <Route path="/materia" element={<Materia />} />
         <Route path="/cases" element={<Cases />} />

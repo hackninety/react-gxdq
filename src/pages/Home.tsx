@@ -43,11 +43,14 @@ export default function Home() {
               <div className="card-head">
                 <b>{lib.title}</b>
                 <span className="muted">{lib.authorName}</span>
+                {lib.version && <span className="badge">{lib.version}</span>}
                 {lib.status === 'planned' && <span className="badge planned">待接入</span>}
               </div>
               <p>{lib.note ?? lib.repo}</p>
               <div>{lib.wushu.map((w) => <WushuTag key={w} w={w} />)}</div>
-              {lib.status === 'installed' && <Link className="btn" to="/library">进入文库 →</Link>}
+              {lib.status === 'installed' && (
+                <Link className="btn" to={lib.id === 'nhx' ? '/library' : `/library?lib=${lib.id}`}>进入文库 →</Link>
+              )}
             </div>
           ))}
         </div>

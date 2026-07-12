@@ -1,19 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { searchDocs } from 'nhx-ts-lib';
+import { foldIncludes } from 'nhx-ts-lib';
 import { findHerbs } from 'nhx-ts-lib/herbs';
 import { findAcupoints } from 'nhx-ts-lib/acupoints';
 import { findFormulas } from 'nhx-ts-lib/formulas';
 import { findCases } from 'nhx-ts-lib/cases';
 import { searchTranscripts, type TranscriptHit } from 'nhx-ts-lib/transcripts';
+import { loadInstalledLibs, type GxDocMeta, type LoadedLib } from '../gx/libs';
+import { LIBS } from '../gx/taxonomy';
 import { FidelityBadge } from '../components/badges';
 
-/** 跨分支检索：同步索引即时出结果；逐字稿全文为按需深检 */
+/** 跨库检索：四库篇目 + 方药穴医案索引即时命中；逐字稿全文为按需深检 */
 export default function Search() {
   const [q, setQ] = useState('');
   const [deep, setDeep] = useState<TranscriptHit[] | 'loading' | undefined>();
+  const [libs, setLibs] = useState<LoadedLib[]>();
 
-  const docs = q ? searchDocs(q, { limit: 20 }) : [];
+  useEffect(() => {
+    if (q && !libs) loadInstalledLibs().then(setLibs);
+  }, [q, libs]);
+
+  const docs = useMemo(() => {
+    if (!q || !libs) return [] as GxDocMeta[];
+    const out: GxDocMeta[] = [];
+    for (const lib of libs) {
+      let n = 0;
+      for (const m of lib.manifest) {
+        if (foldIncludes(`${m.title} ${m.book}`, q)) {
+          out.push(m);
+          if (++n >= 10) break;
+        }
+      }
+    }
+    return out;
+  }, [q, libs]);
+
   const herbs = q ? findHerbs(q, { limit: 8 }) : [];
   const acus = q ? findAcupoints(q, { limit: 8 }) : [];
   const formulas = q ? findFormulas(q, { limit: 8 }) : [];
@@ -33,13 +54,14 @@ export default function Search() {
       {q && (
         <div className="results">
           <section>
-            <h3>讲稿篇目 <span className="muted">{docs.length}</span></h3>
+            <h3>四库篇目 <span className="muted">{!libs ? '加载中…' : docs.length}</span></h3>
             <ul className="doc-list">
               {docs.map((d) => (
-                <li key={d.path}>
-                  <Link to={`/read/${d.path}`}>{d.title}</Link>
-                  <span className="muted"> 《{d.book}》</span>
-                  <FidelityBadge f={d.fidelity} />
+                <li key={`${d.lib}/${d.path}`}>
+                  <Link to={`/read/${d.lib}/${d.path}`}>{d.title}</Link>
+                  <span className="muted"> 《{d.book}》{d.dynasty ? ` · ${d.dynasty}` : ''}</span>
+                  <span className="badge">{LIBS.find((l) => l.id === d.lib)?.title}</span>
+                  {d.fidelity && <FidelityBadge f={d.fidelity} />}
                 </li>
               ))}
             </ul>

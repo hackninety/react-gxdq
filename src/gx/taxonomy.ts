@@ -33,6 +33,12 @@ export const AUTHORS: AuthorInfo[] = [
     era: '1954–2012',
     bio: '美国执业中医师，生于台湾，创办佛罗里达汉唐中医诊所。以《人纪》（针灸/内经/本草/伤寒/金匮）与《天纪》（易经/紫微/风水）系列课程闻名，主张经方派中医与天人合一的五术体系。',
   },
+  {
+    id: 'abeseimei',
+    name: '安倍晴明',
+    era: '921–1005',
+    bio: '日本平安时代阴阳师，官拜天文博士。《占事略決》为其传世六壬式占要诀（983 年顷），凡三十六卦、占目六十四条，是阴阳道六壬占法的核心文献。',
+  },
 ];
 
 /** 语料库注册表（多库并册：现装 nhx，其余为路线图占位） */
@@ -44,6 +50,7 @@ export interface CorpusLib {
   status: 'installed' | 'planned';
   wushu: WuShu[];
   repo: string;
+  version?: string;
   note?: string;
 }
 
@@ -51,21 +58,26 @@ export const LIBS: CorpusLib[] = [
   {
     id: 'nhx', title: '倪海厦文库', authorId: 'nihaixia', authorName: '倪海厦',
     status: 'installed', wushu: ['医', '命', '卜', '相', '山'],
-    repo: 'github:hackninety/nhx-ts-lib',
+    repo: 'github:hackninety/nhx-ts-lib', version: 'v0.1.0',
     note: '14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 逐字稿 6486 段 · 64 卦',
   },
   {
     id: 'lrdq', title: '大六壬典籍', authorId: 'guji', authorName: '古籍多家',
-    status: 'planned', wushu: ['卜'], repo: 'github:hackninety/lrdq-ts-lib',
-    note: '《六壬大全》《六壬心镜》《六壬指南》与毕法检测引擎',
+    status: 'installed', wushu: ['卜'],
+    repo: 'github:hackninety/lrdq-ts-lib', version: 'v0.11.0',
+    note: '《六壬大全》（明·四库本）《六壬心镜》（唐·徐道符）《六壬指南注解》（明·陈公献/今·张洪）· 毕法百课检测引擎',
   },
   {
     id: 'zslj', title: '占事略決', authorId: 'abeseimei', authorName: '安倍晴明',
-    status: 'planned', wushu: ['卜'], repo: 'github:hackninety/zslj-ts-lib',
+    status: 'installed', wushu: ['卜'],
+    repo: 'github:hackninety/zslj-ts-lib', version: 'v0.2.1',
+    note: '安倍晴明六壬式占原典（983 年顷）· 三十六卦 · 古法排盘引擎',
   },
   {
-    id: 'qmdj', title: '奇门遁甲', authorId: 'guji', authorName: '古籍多家',
-    status: 'planned', wushu: ['卜'], repo: 'github:hackninety/qmdj-ts-lib',
+    id: 'qmdj', title: '奇门遁甲典籍', authorId: 'guji', authorName: '古籍多家',
+    status: 'installed', wushu: ['卜'],
+    repo: 'github:hackninety/qmdj-ts-lib', version: 'v0.1.1',
+    note: '《奇门遁甲秘笈大全》三十卷（旧题明·刘伯温辑）· 796 结构化小节 · 附金函玉镜残卷',
   },
 ];
 

@@ -11,11 +11,14 @@
   },
   "dependencies": {
     "dompurify": "^3.4.12",
+    "lrdq-ts-lib": "github:hackninety/lrdq-ts-lib#v0.11.0",
     "marked": "^18.0.6",
     "nhx-ts-lib": "github:hackninety/nhx-ts-lib#v0.1.0",
+    "qmdj-ts-lib": "github:hackninety/qmdj-ts-lib#v0.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.1"
+    "react-router-dom": "^7.18.1",
+    "zslj-ts-lib": "github:hackninety/zslj-ts-lib#v0.2.1"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",

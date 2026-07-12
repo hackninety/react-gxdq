@@ -11,8 +11,11 @@ import App from '../src/App';
 /** 路由 → 渲染后必须包含的关键字（交互/懒加载页面只验证骨架） */
 const routes: [string, string][] = [
   ['/', '五术门类'],
-  ['/library', '人纪'],
-  ['/library?wushu=医', '伤寒论'],
+  // 文库索引经 useEffect 异步加载，SSR 仅验证文库切换骨架
+  ['/library', '倪海厦文库'],
+  ['/library?lib=lrdq', '大六壬典籍'],
+  ['/library?lib=zslj', '占事略決'],
+  ['/library?wushu=医', '倪海厦文库'],
   ['/search', '检索'],
   ['/materia', '中药'],
   ['/cases', '倪海厦医案'],

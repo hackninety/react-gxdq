@@ -101,7 +101,7 @@ export default function Materia() {
             </div>
             {herbMeta?.guijing && <p className="muted">归经：{herbMeta.guijing}{herbMeta.gongxiao && ` ｜ 功效：${herbMeta.gongxiao}`}</p>}
             {herbMeta?.zhuzhi && <p className="muted">主治：{herbMeta.zhuzhi}</p>}
-            {herbMeta?.bencaoDoc && <p><Link className="btn" to={`/read/${herbMeta.bencaoDoc}`}>查看《神农本草经》倪师讲稿 →</Link></p>}
+            {herbMeta?.bencaoDoc && <p><Link className="btn" to={`/read/nhx/${herbMeta.bencaoDoc}`}>查看《神农本草经》倪师讲稿 →</Link></p>}
             <Md src={detail.md} />
             <Refs refs={detail.refs} />
           </>
