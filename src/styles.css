@@ -1,0 +1,129 @@
+:root {
+  --bg: #faf8f4;
+  --fg: #2a2622;
+  --muted: #8a8378;
+  --line: #e5dfd4;
+  --panel: #ffffff;
+  --accent: #8c4a2f;
+  --accent-soft: #f3e7de;
+  --shan: #4a7c59; --yi: #8c4a2f; --ming: #6b4a8c; --bu: #2f6b8c; --xiang: #8c7a2f;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171512; --fg: #e8e2d8; --muted: #948c7f; --line: #33302a;
+    --panel: #201d19; --accent: #d08d6a; --accent-soft: #33261f;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 15px/1.75 "Source Han Serif SC", "Noto Serif SC", Georgia, "Songti SC", SimSun, serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { font-weight: 600; line-height: 1.35; }
+input, select, button { font: inherit; color: inherit; }
+
+/* 顶栏 */
+.topnav { display: flex; gap: 18px; align-items: center; padding: 10px 24px;
+  border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 5; }
+.topnav .brand { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--accent); }
+.topnav a { color: var(--fg); }
+.topnav a.active { color: var(--accent); font-weight: 600; }
+.topnav .spacer { flex: 1; }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.page.cols { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; }
+@media (max-width: 860px) { .page.cols { grid-template-columns: 1fr; } }
+.muted { color: var(--muted); font-size: 0.92em; }
+.snippet { font-size: 13px; }
+
+/* 首页 */
+.hero { text-align: center; padding: 28px 0 8px; }
+.hero h1 { font-size: 40px; letter-spacing: 8px; margin: 0 0 8px; }
+.stat-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 22px 0; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 22px; text-align: center; min-width: 120px; color: var(--fg); }
+.stat b { display: block; font-size: 26px; color: var(--accent); }
+.stat:hover { border-color: var(--accent); text-decoration: none; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--fg); }
+.card:hover { border-color: var(--accent); text-decoration: none; }
+.card.planned { opacity: 0.65; }
+.card-head { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+.btn { display: inline-block; background: var(--accent-soft); color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 8px; padding: 4px 12px; cursor: pointer; }
+.disclaimer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12.5px; }
+
+/* 徽章 / 五术标签 */
+.badge { display: inline-block; font-size: 12px; border-radius: 6px; padding: 1px 8px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--muted); margin-left: 6px; }
+.badge.planned { color: var(--muted); }
+.fid-first-party { color: #3c7a3c; border-color: #3c7a3c; }
+.fid-lecture-notes { color: var(--accent); border-color: var(--accent); }
+.fid-transcript { color: #2f6b8c; border-color: #2f6b8c; }
+.fid-attributed, .fid-third-party { color: #a8722a; border-color: #a8722a; }
+.wushu { display: inline-flex; width: 26px; height: 26px; border-radius: 50%;
+  align-items: center; justify-content: center; font-size: 14px; margin-right: 4px;
+  border: 1.5px solid; opacity: 0.85; }
+.wushu.clickable { cursor: pointer; }
+.wushu.active { color: #fff !important; }
+.wushu-山 { color: var(--shan); border-color: var(--shan); } .wushu-山.active { background: var(--shan); }
+.wushu-医 { color: var(--yi); border-color: var(--yi); } .wushu-医.active { background: var(--yi); }
+.wushu-命 { color: var(--ming); border-color: var(--ming); } .wushu-命.active { background: var(--ming); }
+.wushu-卜 { color: var(--bu); border-color: var(--bu); } .wushu-卜.active { background: var(--bu); }
+.wushu-相 { color: var(--xiang); border-color: var(--xiang); } .wushu-相.active { background: var(--xiang); }
+
+/* 文库树 / 列表 */
+.side { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px; position: sticky; top: 62px; max-height: calc(100vh - 80px); overflow: auto; }
+.filter-row { margin-bottom: 10px; }
+.tree-series { font-weight: 700; margin: 10px 0 4px; color: var(--muted); letter-spacing: 2px; }
+.tree-book { padding: 3px 8px; border-radius: 6px; cursor: pointer; }
+.tree-book:hover, .tree-book.active { background: var(--accent-soft); color: var(--accent); }
+.tree-groups { margin: 2px 0 6px 14px; border-left: 1px solid var(--line); padding-left: 8px; }
+.tree-group { font-size: 13.5px; padding: 1px 6px; border-radius: 5px; cursor: pointer; color: var(--muted); }
+.tree-group:hover, .tree-group.active { color: var(--accent); }
+.main { min-width: 0; }
+.main-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.main-head h2 { margin: 0; }
+.doc-list { list-style: none; padding: 0; margin: 12px 0; }
+.doc-list li { padding: 5px 0; border-bottom: 1px dashed var(--line); }
+.group-label { float: right; }
+.entity-list { list-style: none; padding: 0; margin: 10px 0 0; }
+.entity-list li { padding: 5px 8px; border-radius: 6px; cursor: pointer; border-bottom: 1px dashed var(--line); }
+.entity-list li:hover, .entity-list li.active { background: var(--accent-soft); }
+.tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.tabs button { flex: 1; border: 1px solid var(--line); background: none; border-radius: 8px;
+  padding: 5px 0; cursor: pointer; }
+.tabs button.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.search-box { width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); margin: 4px 0 10px; }
+select { width: 100%; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); margin-bottom: 6px; }
+
+/* 阅读器 / markdown */
+.reader { max-width: 860px; }
+.crumbs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.md { line-height: 2; }
+.md h1 { font-size: 26px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.md blockquote { margin: 10px 0; padding: 6px 16px; border-left: 3px solid var(--accent);
+  background: var(--accent-soft); border-radius: 0 8px 8px 0; }
+.md table { border-collapse: collapse; display: block; overflow-x: auto; }
+.md th, .md td { border: 1px solid var(--line); padding: 4px 10px; }
+.pager { display: flex; justify-content: space-between; margin: 26px 0 10px; gap: 20px; }
+.refs blockquote { margin: 10px 0; padding: 8px 14px; border-left: 3px solid var(--bu);
+  background: var(--panel); border-radius: 0 8px 8px 0; font-size: 14px; }
+.results section { margin-top: 20px; }
+
+/* 逐字稿 / 64 卦 */
+.paras p { margin: 0 0 10px; }
+.para-no { display: inline-block; min-width: 34px; color: var(--muted); font-size: 12px; }
+.gua-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin: 16px 0; }
+@media (max-width: 720px) { .gua-grid { grid-template-columns: repeat(4, 1fr); } }
+.gua-cell { border: 1px solid var(--line); background: var(--panel); border-radius: 8px;
+  text-align: center; padding: 8px 2px; cursor: pointer; }
+.gua-cell:hover, .gua-cell.active { border-color: var(--accent); background: var(--accent-soft); }
+.gua-symbol { display: block; font-size: 26px; }
+.gua-name { font-size: 12.5px; }
+.gua-detail { margin-top: 18px; max-width: 860px; }
