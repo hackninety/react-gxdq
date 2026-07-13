@@ -291,6 +291,10 @@ section > h2 {
 section > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule-soft); }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(262px, 1fr)); gap: 14px; align-items: stretch; }
+/* 五术门类：固定 5 列一行（山医命卜相不换行）；窄屏依次回退 */
+.cards-5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 900px) { .cards-5 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .cards-5 { grid-template-columns: repeat(2, 1fr); } }
 .card {
   background: var(--paper);
   border: 1px solid var(--rule-soft);

@@ -25,7 +25,7 @@ export default function Home() {
 
       <section>
         <h2>五术门类</h2>
-        <div className="cards">
+        <div className="cards cards-5">
           {WUSHU.map((w) => (
             <Link key={w.key} className="card" to={`/library?wushu=${w.key}`}>
               <div className="card-head"><WushuTag w={w.key} /> <b>{w.label}</b></div>
