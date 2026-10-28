@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "dompurify": "^3.4.12",
-    "lrdq-ts-lib": "github:hackninety/lrdq-ts-lib#v0.11.0",
+    "lrdq-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/lrdq-ts-lib-v0.11.0/lrdq-ts-lib-0.11.0.tgz",
     "marked": "^18.0.6",
-    "nhx-ts-lib": "github:hackninety/nhx-ts-lib#v0.1.1",
-    "qmdj-ts-lib": "github:hackninety/qmdj-ts-lib#v0.1.1",
+    "nhx-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/nhx-ts-lib-v0.1.1/nhx-ts-lib-0.1.1.tgz",
+    "qmdj-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/qmdj-ts-lib-v0.2.0/qmdj-ts-lib-0.2.0.tgz",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
-    "zslj-ts-lib": "github:hackninety/zslj-ts-lib#v0.2.1"
+    "zslj-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/zslj-ts-lib-v0.1.0/zslj-ts-lib-0.1.0.tgz"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",

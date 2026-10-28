@@ -4,14 +4,14 @@
 Vite + React + TypeScript，语料以 `*-ts-lib` 语料库形式接入（manifest 同步索引 +
 载荷分包懒加载，36 个 chunk 按需拉取，首屏仅 ~200KB gzip）。
 
-## 已接入语料库（均为 GitHub tag 固定引入，无本地路径依赖）
+## 已接入语料库（均从 common-ts-lib 的版本化 Release 安装）
 
 | 库 | 作者 | 内容 | 五术 |
 |---|---|---|---|
-| [nhx-ts-lib](https://github.com/hackninety/nhx-ts-lib) `#v0.1.0` | 倪海厦 | 14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 人纪逐字稿 6486 段 · 64 卦 | 医 命 卜 相 山 |
-| [lrdq-ts-lib](https://github.com/hackninety/lrdq-ts-lib) `#v0.11.0` | 古籍多家 | 《六壬大全》（明·四库本）《六壬心镜》（唐）《六壬指南注解》 28 篇 | 卜 |
-| [zslj-ts-lib](https://github.com/hackninety/zslj-ts-lib) `#v0.2.1` | 安倍晴明 | 《占事略決》原典合订本（983 年顷）+ 算法说明 | 卜 |
-| [qmdj-ts-lib](https://github.com/hackninety/qmdj-ts-lib) `#v0.1.1` | 古籍多家 | 《奇门遁甲秘笈大全》三十卷 + 金函玉镜残卷，33 篇 | 卜 |
+| [nhx-ts-lib](https://github.com/hackninety/common-ts-lib/tree/main/packages/nhx-ts-lib) `0.1.1` | 倪海厦 | 14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 人纪逐字稿 6486 段 · 64 卦 | 医 命 卜 相 山 |
+| [lrdq-ts-lib](https://github.com/hackninety/common-ts-lib/tree/main/packages/lrdq-ts-lib) `0.11.0` | 古籍多家 | 《六壬大全》（明·四库本）《六壬心镜》（唐）《六壬指南注解》 28 篇 | 卜 |
+| [zslj-ts-lib](https://github.com/hackninety/common-ts-lib/tree/main/packages/zslj-ts-lib) `0.1.0` | 安倍晴明 | 《占事略決》原典合订本（983 年顷）+ 算法说明 | 卜 |
+| [qmdj-ts-lib](https://github.com/hackninety/common-ts-lib/tree/main/packages/qmdj-ts-lib) `0.2.0` | 古籍多家 | 《奇门遁甲秘笈大全》、金函玉镜残卷、《遁甲演义》《奇门遁甲统宗》《奇门宝鉴》，45 篇 | 卜 |
 
 多库适配层见 `src/gx/libs.ts`（统一 GxDocMeta 形状、按库动态分包）；
 新库接入 = taxonomy 注册表加一行 + libs.ts 加一个 loader。
@@ -30,7 +30,7 @@ Vite + React + TypeScript，语料以 `*-ts-lib` 语料库形式接入（manifes
 ## 开发
 
 ```bash
-npm install        # 会从 GitHub 拉取并构建 nhx-ts-lib（一次性，稍慢）
+npm ci             # 按锁文件下载各库的独立预构建包，无需并排源码目录
 npm run dev        # http://localhost:5173
 npm run build
 npx vite-node@3 scripts/smoke-ssr.tsx   # 无头路由冒烟

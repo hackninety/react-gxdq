@@ -2,7 +2,7 @@
  * 国学大全 —— 分类模型：作者 × 五术（山医命卜相）
  *
  * 检索与分析的两条主轴：
- *   作者：语料库以作者/流派为单位接入（现有倪海厦文库；lrdq/zslj/qmdj 待接）
+ *   作者：语料库以作者/流派为单位接入（倪海厦、六壬、奇门与占事略決）
  *   五术：山（修养/练功）医（方药针灸）命（紫微/四柱/星座）卜（易卦/占断）相（手面相/堪舆）
  *
  * 分类落在「书/分组」粒度：wushuOfDoc(meta) 由 path 前缀（slug 与 slug/group）求值。
@@ -41,7 +41,7 @@ export const AUTHORS: AuthorInfo[] = [
   },
 ];
 
-/** 语料库注册表（多库并册：现装 nhx，其余为路线图占位） */
+/** 语料库注册表：四个独立包统一维护于 common-ts-lib。 */
 export interface CorpusLib {
   id: string;
   title: string;
@@ -58,26 +58,26 @@ export const LIBS: CorpusLib[] = [
   {
     id: 'nhx', title: '倪海厦文库', authorId: 'nihaixia', authorName: '倪海厦',
     status: 'installed', wushu: ['医', '命', '卜', '相', '山'],
-    repo: 'github:hackninety/nhx-ts-lib', version: 'v0.1.1',
+    repo: 'common-ts-lib/packages/nhx-ts-lib', version: 'v0.1.1',
     note: '14 书 936 篇讲稿 · 959 医案 · 415 药 411 穴 113 方 · 逐字稿 6486 段 · 64 卦 · 139 集视频',
   },
   {
     id: 'lrdq', title: '大六壬典籍', authorId: 'guji', authorName: '古籍多家',
     status: 'installed', wushu: ['卜'],
-    repo: 'github:hackninety/lrdq-ts-lib', version: 'v0.11.0',
+    repo: 'common-ts-lib/packages/lrdq-ts-lib', version: 'v0.11.0',
     note: '《六壬大全》（明·四库本）《六壬心镜》（唐·徐道符）《六壬指南注解》（明·陈公献/今·张洪）· 毕法百课检测引擎',
   },
   {
     id: 'zslj', title: '占事略決', authorId: 'abeseimei', authorName: '安倍晴明',
     status: 'installed', wushu: ['卜'],
-    repo: 'github:hackninety/zslj-ts-lib', version: 'v0.2.1',
+    repo: 'common-ts-lib/packages/zslj-ts-lib', version: 'v0.1.0',
     note: '安倍晴明六壬式占原典（983 年顷）· 三十六卦 · 古法排盘引擎',
   },
   {
     id: 'qmdj', title: '奇门遁甲典籍', authorId: 'guji', authorName: '古籍多家',
     status: 'installed', wushu: ['卜'],
-    repo: 'github:hackninety/qmdj-ts-lib', version: 'v0.1.1',
-    note: '《奇门遁甲秘笈大全》三十卷（旧题明·刘伯温辑）· 796 结构化小节 · 附金函玉镜残卷',
+    repo: 'common-ts-lib/packages/qmdj-ts-lib', version: 'v0.2.0',
+    note: '《奇门遁甲秘笈大全》、金函玉镜残卷、《遁甲演义》《奇门遁甲统宗》《奇门宝鉴》· 45 篇',
   },
 ];
 
