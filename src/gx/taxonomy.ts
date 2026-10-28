@@ -70,7 +70,7 @@ export const LIBS: CorpusLib[] = [
   {
     id: 'zslj', title: '占事略決', authorId: 'abeseimei', authorName: '安倍晴明',
     status: 'installed', wushu: ['卜'],
-    repo: 'common-ts-lib/packages/zslj-ts-lib', version: 'v0.1.0',
+    repo: 'common-ts-lib/packages/zslj-ts-lib', version: 'v0.1.1',
     note: '安倍晴明六壬式占原典（983 年顷）· 三十六卦 · 古法排盘引擎',
   },
   {
