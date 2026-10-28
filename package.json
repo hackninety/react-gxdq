@@ -18,7 +18,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
-    "zslj-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/zslj-ts-lib-v0.1.0/zslj-ts-lib-0.1.0.tgz"
+    "zslj-ts-lib": "https://github.com/hackninety/common-ts-lib/releases/download/zslj-ts-lib-v0.1.1/zslj-ts-lib-0.1.1.tgz"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",
